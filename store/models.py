@@ -60,7 +60,9 @@ class OrderItem(models.Model):
 
     @property
     def get_total(self):
-        total = self.product.price * self.quantity
+        print(type(self.product.price))
+        # product_price = int(self.product.price)
+        total = int(float(self.product.price)) * self.quantity
         return total
 
 
