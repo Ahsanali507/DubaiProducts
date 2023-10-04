@@ -38,6 +38,7 @@
         <br>
         <div class="box-element hidden" id="payment-info">
 	        <small>Paypal Options</small>
+            <button id="make-payment">Make Payment</button>
         </div>
 	</div>
 
@@ -63,8 +64,18 @@
 
 <script type="text/javascript">
 var shipping ='{{ order.shipping }}'
+var total='{{ order.get_cart_total|floatformat:2 }}'
 if (shipping == 'False'){
     document.getElementById('shipping-info').innerHTML=''
+}
+
+if (user!="AnonymousUser"){
+    document.getElementById('user-info').innerHTML=''
+}
+
+if(shipping=='Flase'&&user!="AnonymousUser"){
+    document.getElementById('form-wrapper').classList.add("hidden")
+    document.getElementById('payment-info').classList.remove("hidden")
 }
 
 var form=document.getElementById('form')
@@ -73,5 +84,38 @@ form.addEventListener('submit',function (e){
     document.getElementById('form-button').classList.add("hidden")
     document.getElementById('payment-info').classList.remove("hidden")
 })
+
+document.getElementById('make-payment').addEventListener('click',function (){
+    submitPaymentDataForm()
+})
+
+function submitPaymentDataForm(){
+    console.log("Payment form submitted")
+    var userFormData={
+        'name':null,
+        'email':null,
+        'total':total,
+    }
+
+    var shippingInfoData={
+        'address':null,
+        'city':null,
+        'state':null,
+        'zipcode':null,
+    }
+
+    if(shipping!='False'){
+        shippingInfoData.address=form.address.value
+        shippingInfoData.city=form.city.value
+        shippingInfoData.state=form.state.value
+        shippingInfoData.zipcode=form.zipcode.value
+    }
+
+    if(user=='AnonymousUser'){
+        userFormData.name=form.name.value
+        userFormData.email=form.email.value
+    }
+
+}
 </script>
 {% endblock content %}
