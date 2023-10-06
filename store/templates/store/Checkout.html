@@ -19,20 +19,20 @@
 	            	<p>Shipping Information:</p>
 	            	<hr>
 	            	<div class="form-field">
-	            		<input class="form-control" type="text" name="address" placeholder="Address...">
+	            		<input class="form-control" type="text" name="address" placeholder="Address..." required>
 	            	</div>
 	            	<div class="form-field">
-	            		<input class="form-control" type="text" name="city" placeholder="City...">
+	            		<input class="form-control" type="text" name="city" placeholder="City..." required>
 	            	</div>
 	            	<div class="form-field">
-	            		<input class="form-control" type="text" name="state" placeholder="State...">
+	            		<input class="form-control" type="text" name="state" placeholder="State..." required>
 	            	</div>
 	            	<div class="form-field">
-	            		<input class="form-control" type="text" name="zipcode" placeholder="Zip code...">
+	            		<input class="form-control" type="text" name="zipcode" placeholder="Zip code..." required>
 	            	</div>
 	            </div>
 	            <hr>
-	            <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue..">
+	            <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue.." required>
             </form>
 		</div>
         <br>
@@ -104,18 +104,20 @@ function submitPaymentDataForm(){
         'zipcode':null,
     }
 
-    if(shipping!='False'){
+    if(shipping != 'False'){
         shippingInfoData.address=form.address.value
         shippingInfoData.city=form.city.value
         shippingInfoData.state=form.state.value
         shippingInfoData.zipcode=form.zipcode.value
     }
 
-    if(user=='AnonymousUser'){
+    if(user == 'AnonymousUser'){
         userFormData.name=form.name.value
         userFormData.email=form.email.value
     }
 
+    console.log("ShippingInfo data: ", shippingInfoData)
+    console.log("UserForm data: ", userFormData)
 }
 </script>
 {% endblock content %}
