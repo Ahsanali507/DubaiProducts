@@ -97,7 +97,7 @@ document.getElementById('make-payment').addEventListener('click',function (){
 })
 
 function submitPaymentDataForm(){
-    console.log("Payment form submitted")
+    //console.log("Payment form submitted")
     var userFormData={
         'name':null,
         'email':null,
@@ -134,7 +134,7 @@ function submitPaymentDataForm(){
     }).then((response)=>{
             return response.json()
     }).then((data)=>{
-            console.log("Success", data)
+            //console.log("Success", data)
             alert("Transaction was completed")
             window.location.href="{% url 'Store' %}"
         })
