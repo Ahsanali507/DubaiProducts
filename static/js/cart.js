@@ -18,7 +18,7 @@ for(var i=0; i<updatebtns.length; i++){
 }
 
 function addCookieItem(productId, action){
-    console.log("User is not authenticated/login")
+    console.log("User is not loged in")
     // action is add
     if(action=='add'){
         if(cart[productId]==undefined){
@@ -33,7 +33,7 @@ function addCookieItem(productId, action){
     if(action=='remove'){
         cart[productId]['quantity']-=1
         if(cart[productId]['quantity']<=0){
-            console.log("Cart is empty or item is deleted")
+            console.log("Cart is empty || item is deleted")
             delete cart[productId]
         }
     }
